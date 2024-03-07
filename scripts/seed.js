@@ -61,7 +61,7 @@ async function seedBudgets(client) {
         start_on DATE NOT NULL,
         stable_income DECIMAL(8, 2) NOT NULL,
         user_id UUID NOT NULL,
-        CONSTRAINT "fk_budgets_user_id" FOREIGN KEY(user_id) REFERENCES users(id);
+        CONSTRAINT "fk_budgets_user_id" FOREIGN KEY(user_id) REFERENCES users(id)
       );
 
     `;
@@ -103,7 +103,7 @@ async function seedCategories(client) {
         emoji VARCHAR(255) NULL,
         color VARCHAR(7) NOT NULL,
         budget_id UUID NOT NULL,
-        CONSTRAINT "fk__categories_budget_id" FOREIGN KEY(budget_id) REFERENCES budgets(id);
+        CONSTRAINT "fk__categories_budget_id" FOREIGN KEY(budget_id) REFERENCES budgets(id)
       );
     `;
 
@@ -135,7 +135,13 @@ async function seedCategories(client) {
 async function seedTransactions(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-    await client.sql`CREATE TYPE IF NOT EXISTS transaction_type AS ENUM ('in', 'out');`;
+    await client.sql`
+      DO $$ BEGIN
+        CREATE TYPE transaction_type AS ENUM ('in', 'out');
+      EXCEPTION
+        WHEN duplicate_object THEN null;
+      END $$;
+    `;
 
     // Create the "transactions" table if it doesn't exist
     const createTable = await client.sql`
@@ -143,10 +149,10 @@ async function seedTransactions(client) {
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         type transaction_type NOT NULL,
         description VARCHAR(255) NULL,
-        amount DECIMAL(8, 2) NOT NULL,
+        amount DECIMAL(8,2) NOT NULL,
         created_at TIMESTAMP(0) WITH TIME ZONE NOT NULL,
         category_id UUID NOT NULL,
-        CONSTRAINT "fk_transactions_category_id" FOREIGN KEY(category_id) REFERENCES categories(id);
+        CONSTRAINT "fk_transactions_category_id" FOREIGN KEY(category_id) REFERENCES categories(id)
       );
     `;
 
@@ -189,7 +195,7 @@ async function seedGoals(client) {
         deadline_on DATE NOT NULL,
         target DECIMAL(8, 2) NOT NULL,
         user_id UUID NOT NULL,
-        CONSTRAINT "fk_goals_user_id" FOREIGN KEY(user_id) REFERENCES user(id);
+        CONSTRAINT "fk_goals_user_id" FOREIGN KEY(user_id) REFERENCES users(id)
       );
     `;
 
@@ -221,7 +227,13 @@ async function seedGoals(client) {
 async function seedGoalsTransactions(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-    await client.sql`CREATE TYPE IF NOT EXISTS transaction_type AS ENUM ('in', 'out');`;
+    await client.sql`
+      DO $$ BEGIN
+        CREATE TYPE transaction_type AS ENUM ('in', 'out');
+      EXCEPTION
+        WHEN duplicate_object THEN null;
+      END $$;
+    `;
 
     // Create the "goals" table if it doesn't exist
     const createTable = await client.sql`
@@ -232,7 +244,7 @@ async function seedGoalsTransactions(client) {
         amount DECIMAL(8, 2) NOT NULL,
         created_at TIMESTAMP(0) WITH TIME ZONE NOT NULL,
         goal_id UUID NOT NULL,
-        CONSTRAINT "fk_goals_transactions_goal_id" FOREIGN KEY(goal_id) REFERENCES goals(id);
+        CONSTRAINT "fk_goals_transactions_goal_id" FOREIGN KEY(goal_id) REFERENCES goals(id)
       );
     `;
 
@@ -250,7 +262,7 @@ async function seedGoalsTransactions(client) {
     );
 
     console.log(
-      `Seeded ${insertedGoalsTransactionss.length} goals_transactions`,
+      `Seeded ${insertedGoalsTransactions.length} goals_transactions`,
     );
 
     return {

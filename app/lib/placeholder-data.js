@@ -12,13 +12,13 @@ const users = [
 const budgets = [
     {
         id: '269ed560-0149-4e86-9d00-92c186b607ab',
-        start_on: '02/2024',
+        start_on: '2024-02-01',
         stable_income: '2000.00',
         user_id: 'de659c8b-af60-4cde-9099-b846388a9762'
     },
     {
         id: '3750ec87-87ef-4ecd-8378-a7d229be7b04',
-        start_on: '03/2024',
+        start_on: '2024-03-01',
         stable_income: '1766.92',
         user_id: 'de659c8b-af60-4cde-9099-b846388a9762'
     }
@@ -54,7 +54,7 @@ const transactions = [
         type: 'out',
         description: 'Macdo order',
         amount: '22.57',
-        created_at: '1707824788',
+        created_at: '2024-02-13 12:46:28',
         category_id: 'd378f097-6e47-4748-abbe-2915dfd7ad3f'
     },
     {
@@ -62,7 +62,7 @@ const transactions = [
         type: 'out',
         description: 'Canteen refill',
         amount: '15.00',
-        created_at: '1708862863',
+        created_at: '2024-02-25 13:07:13',
         category_id: 'd378f097-6e47-4748-abbe-2915dfd7ad3f'
     },
     {
@@ -70,7 +70,7 @@ const transactions = [
         type: 'out',
         description: 'Netflix subscription',
         amount: '23.73',
-        created_at: '1707211729',
+        created_at: '2024-02-06 10:28:49',
         category_id: 'c3797380-c9fc-4743-a73f-fb3093606d74'
     }
 ];
@@ -78,10 +78,10 @@ const transactions = [
 const goals = [
     {
         id: '05f94aef-3adc-4e2f-a954-83993456fc0b',
-        name: 'Projet Japon',
+        name: 'Project Japan',
         description: 'Planning a trip to Japan to visit Tokyo and the surrounding area.',
         emoji: '🗻',
-        deadline_on: '15/07/2027',
+        deadline_on: '2027-07-15',
         target: '15000.00',
         user_id: 'de659c8b-af60-4cde-9099-b846388a9762'
     }
@@ -93,7 +93,7 @@ const goalsTransactions = [
         type: 'in',
         description: 'Savings February 2024',
         amount: '237.52',
-        created_at: '1708885255',
+        created_at: '2024-02-25 19:20:55',
         goal_id: '05f94aef-3adc-4e2f-a954-83993456fc0b'
     },
     {
@@ -101,7 +101,7 @@ const goalsTransactions = [
         type: 'out',
         description: 'Office replacement',
         amount: '150.95',
-        created_at: '1710671925',
+        created_at: '2024-03-17 11:38:45',
         goal_id: '05f94aef-3adc-4e2f-a954-83993456fc0b'
     }
 ];
