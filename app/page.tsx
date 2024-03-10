@@ -1,5 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
+import { getUserName } from './lib/data';
+
+async function printUserName(email: string) {
+  const userName = await getUserName(email);
+  console.log(userName);
+}
 
 export default function Home() {
   return (
@@ -14,6 +22,12 @@ export default function Home() {
         Log in
         <ArrowRightIcon className="h-5 w-5 text-center text-white" />
       </Link>
+      <button
+        className="mt-5 flex items-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        onClick={() => printUserName('user@clementchretien.com')}
+      >
+        Print user name
+      </button>
     </main>
   );
 }
