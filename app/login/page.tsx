@@ -1,5 +1,4 @@
-import { KeyIcon, AtSymbolIcon } from '@heroicons/react/24/outline';
-import { ArrowRightIcon } from '@heroicons/react/20/solid';
+import LoginForm from '@/app/ui/login-form';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -16,60 +15,8 @@ export default function LoginPage() {
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Email address
-              </label>
-              <div className="relative mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="Enter your email address"
-                  required
-                  className="peer block w-full rounded-md border-0 py-1.5 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-                <AtSymbolIcon className="absolute left-2 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400 peer-focus:text-gray-900" />
-              </div>
-            </div>
-
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-              <div className="relative mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  placeholder="Enter password"
-                  required
-                  className="peer block w-full rounded-md border-0 py-1.5 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-                <KeyIcon className="absolute left-2 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400 peer-focus:text-gray-900" />
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-between rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Log in
-                <ArrowRightIcon className="h-5 w-5 text-white" />
-              </button>
-            </div>
-          </form>
+        <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+          <LoginForm />
 
           <p className="mt-5 text-center text-sm text-gray-500">
             Don&apos;t have an account?{' '}
