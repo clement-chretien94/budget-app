@@ -19,7 +19,7 @@ async function seedUsers(client) {
         name VARCHAR(50) NOT NULL,
         email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL,
-        currency VARCHAR(5)
+        currency VARCHAR(5) NOT NULL
       );
     `;
 
