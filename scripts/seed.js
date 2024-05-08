@@ -189,11 +189,11 @@ async function seedGoals(client) {
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS goals (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        name VARCHAR(50) NOT NULL,
+        name VARCHAR(50) NULL,
         description VARCHAR(255) NULL,
         emoji VARCHAR(255) NULL,
         deadline_on DATE NOT NULL,
-        target DECIMAL(8, 2) NOT NULL,
+        target DECIMAL(8, 2) NULL,
         user_id UUID NOT NULL,
         CONSTRAINT "fk_goals_user_id" FOREIGN KEY(user_id) REFERENCES users(id)
       );
@@ -239,9 +239,9 @@ async function seedGoalsTransactions(client) {
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS goals_transactions (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        type transaction_type NOT NULL,
+        type transaction_type NULL,
         description VARCHAR(255) NULL,
-        amount DECIMAL(8, 2) NOT NULL,
+        amount DECIMAL(8, 2) NULL,
         created_at TIMESTAMP(0) WITH TIME ZONE NOT NULL,
         goal_id UUID NOT NULL,
         CONSTRAINT "fk_goals_transactions_goal_id" FOREIGN KEY(goal_id) REFERENCES goals(id)

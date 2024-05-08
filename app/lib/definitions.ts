@@ -9,3 +9,38 @@ export type User = {
   password: string;
   currency: string;
 };
+
+export type Budget = {
+  id: string;
+  start_on: string;
+  stable_income: number;
+  user_id: string;
+};
+
+export type Categ = {
+  id: string;
+  name: string;
+  emoji: string;
+  color: string;
+  budget_id: string;
+};
+
+export type Transaction = {
+  id: string;
+  type: 'in' | 'out';
+  description: string;
+  amount: number;
+  created_at: string;
+  category_id: string;
+};
+
+export type Goal = {
+  id: string;
+  name: string;
+  description: string;
+  emoji: string;
+  deadline_on: string;
+  target: number;
+  sum: number;
+  user_id: string;
+};
