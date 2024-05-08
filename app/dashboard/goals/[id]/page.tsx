@@ -68,7 +68,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         <p>{new Date(goal.deadline_on).toLocaleDateString()}</p>
       </div>
       <h2 className="font-bold text-slate-500">Targeted Value</h2>
-      <p className="mb-2">${Intl.NumberFormat("en-US").format(goal.target)}</p>
+      <p className="mb-2">${Intl.NumberFormat('en-US').format(goal.target)}</p>
       <div className="mb-5 flex justify-end">
         <CreateGoalTransactionButton goalId={id} />
       </div>

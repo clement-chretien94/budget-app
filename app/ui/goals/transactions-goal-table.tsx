@@ -50,7 +50,9 @@ export async function GoalTransactionsTable(
             </TableCell>
             <TableCell>{transaction.type}</TableCell>
             <TableCell>{transaction.description}</TableCell>
-            <TableCell className="text-right">${Intl.NumberFormat("en-US").format(transaction.amount)}</TableCell>
+            <TableCell className="text-right">
+              ${Intl.NumberFormat('en-US').format(transaction.amount)}
+            </TableCell>
             <TableCell>
               <div className="flex justify-end gap-2">
                 <EditTransactionGoalButton id={transaction.id} />
@@ -64,7 +66,7 @@ export async function GoalTransactionsTable(
         <TableRow>
           <TableCell colSpan={3}>Total</TableCell>
           <TableCell className="text-right">
-            ${Intl.NumberFormat("en-US").format(getSum(goalTransactions))}
+            ${Intl.NumberFormat('en-US').format(getSum(goalTransactions))}
           </TableCell>
         </TableRow>
       </TableFooter>
