@@ -57,11 +57,11 @@ async function seedBudgets(client) {
     // The stable_income could be put in users table
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS budgets (
-        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        start_on DATE NOT NULL,
-        stable_income DECIMAL(8, 2) NOT NULL,
-        user_id UUID NOT NULL,
-        CONSTRAINT "fk_budgets_user_id" FOREIGN KEY(user_id) REFERENCES users(id)
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      start_on DATE NOT NULL UNIQUE,
+      stable_income DECIMAL(8, 2) NOT NULL,
+      user_id UUID NOT NULL,
+      CONSTRAINT "fk_budgets_user_id" FOREIGN KEY(user_id) REFERENCES users(id)
       );
 
     `;
@@ -101,6 +101,7 @@ async function seedCategories(client) {
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(50) NOT NULL,
         emoji VARCHAR(255) NULL,
+        amount DECIMAL(8,2) NOT NULL,
         color VARCHAR(7) NOT NULL,
         budget_id UUID NOT NULL,
         CONSTRAINT "fk__categories_budget_id" FOREIGN KEY(budget_id) REFERENCES budgets(id)

@@ -19,10 +19,25 @@ const links = [
 
 export default function NavLinks() {
   const pathname = usePathname();
+  const pathParts = pathname.split('/');
+  const LinkIcon = links[0].icon;
 
   return (
     <>
-      {links.map((link) => {
+      <Link
+        key={links[0].name}
+        href={links[0].href}
+        className={clsx(
+          'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
+          {
+            'bg-sky-100 text-blue-600': pathname === links[0].href,
+          },
+        )}
+      >
+        <LinkIcon className="w-6" />
+        <p className="hidden md:block">{links[0].name}</p>
+      </Link>
+      {links.slice(1).map((link) => {
         const LinkIcon = link.icon;
         return (
           <Link
@@ -31,7 +46,8 @@ export default function NavLinks() {
             className={clsx(
               'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
               {
-                'bg-sky-100 text-blue-600': pathname === link.href,
+                'bg-sky-100 text-blue-600':
+                  `/${pathParts[1]}/${pathParts[2]}` === link.href,
               },
             )}
           >

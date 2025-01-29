@@ -1,15 +1,7 @@
-import type { Metadata } from 'next';
+import { getLatestBudgetsId } from '@/app/lib/data';
+import { RedirectType, redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Budgets',
-};
-
-export default function Page() {
-  return (
-    <main>
-      <h1 className="text-center text-xl font-bold">
-        Welcome to your Budgets Page
-      </h1>
-    </main>
-  );
+export default async function Page() {
+  const latestId = await getLatestBudgetsId('user@clementchretien.com');
+  redirect(`/dashboard/budgets/${latestId.id}`, RedirectType.replace);
 }

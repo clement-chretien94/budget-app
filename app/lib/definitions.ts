@@ -21,6 +21,7 @@ export type Categ = {
   id: string;
   name: string;
   emoji: string;
+  amount: number;
   color: string;
   budget_id: string;
 };
@@ -43,4 +44,12 @@ export type Goal = {
   target: number;
   sum: number;
   user_id: string;
+};
+
+export type PieData = {
+  id: string;
+  name: string;
+  value: number;
+  emoji: string;
+  fill: string;
 };
